@@ -1,21 +1,13 @@
 package com.co.nexos.innovacion.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -53,14 +45,12 @@ public class Cliente implements Serializable {
     private String contacto;
     @Column(name = "permiso")
     private String permiso;
-    @JoinTable(name = "clientes_has_variables", joinColumns = {
+   /* @JoinTable(name = "clientes_has_variables", joinColumns = {
         @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")}, inverseJoinColumns = {
         @JoinColumn(name = "id_variable", referencedColumnName = "id_variable")})
-    @JsonBackReference
     @ManyToMany
     private List<Variable> variableList;
-    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "idCliente")
-    private List<Usuario> usuarioList;
+    private List<Usuario> usuarioList;*/
        
 }

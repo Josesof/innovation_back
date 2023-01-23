@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.co.nexos.innovacion.entity.Rol;
 import com.co.nexos.innovacion.exception.MsjException;
-import com.co.nexos.innovacion.rol.service.IRolService;
-import com.google.gson.Gson;
-import org.json.simple.JSONObject;   
+import com.co.nexos.innovacion.rol.service.IRolService;   
 
 /**
  *
@@ -63,14 +61,12 @@ public class RolController {
 		}
     }
     
-    @DeleteMapping
-    public ResponseEntity<Object> eliminarRol(@RequestBody String idRol) {
-    	Gson gson = new Gson();
-    	JSONObject objRol = gson.fromJson(idRol, JSONObject.class);
-    	;
+    @DeleteMapping("/{idRol}")
+    public ResponseEntity<Object> eliminarRol(@PathVariable("idRol") int idRol) {
+    	
         try {
         	System.out.println();
-        	String respuesta = rolService.eliminarRol(Integer.parseInt(objRol.get("idRol").toString()));
+        	String respuesta = rolService.eliminarRol(idRol);
         	return ResponseEntity.status(HttpStatus.OK).body(respuesta);
 		} catch (MsjException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-	implementation LOMBOK
+	implementation LOMBOK, MAPPER
 	implementation JPA_PERSISTENCE, SPRING_BOOT_RUNTIME, GSON	
 	implementation 'com.google.code.gson:gson:2.9.0'
 	implementation 'com.googlecode.json-simple:json-simple:1.1'

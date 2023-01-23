@@ -1,17 +1,13 @@
 package com.co.nexos.innovacion.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -43,8 +39,5 @@ public class Permiso implements Serializable {
     private Integer idPermiso;
     @Column(name = "nombre_permiso")
     private String nombrePermiso;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPermiso")
-    private List<Usuario> usuarioList;
     
 }

@@ -1,20 +1,13 @@
 package com.co.nexos.innovacion.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -50,20 +43,18 @@ public class Variable implements Serializable {
     private Short estado;
     @Column(name = "tiempo_muestreo")
     private Integer tiempoMuestreo;
-    @ManyToMany(mappedBy = "variableList")
+    @Column(name = "id_unidad_medida")
+    private Integer idUnidadMedida;
+    /*@ManyToMany(mappedBy = "variableList")
     private List<Cliente> clienteList;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVariable")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Sensor> sensorList;
     @JoinColumn(name = "id_unidad_medida", referencedColumnName = "id_unidad_medida")
-    //@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private UnidadMedida idUnidadMedida;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVariable")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CapturaDato> capturaDatoList;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVariable")
-    private List<Umbral> umbralList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Umbral> umbralList;*/
     
 }

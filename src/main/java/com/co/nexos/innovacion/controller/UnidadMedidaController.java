@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.co.nexos.innovacion.controller;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.co.nexos.innovacion.entity.UnidadMedida;
 import com.co.nexos.innovacion.exception.MsjException;
 import com.co.nexos.innovacion.unidadmedida.service.IUnidadMedidaService;
-import com.google.gson.Gson;
 
 /**
  *
@@ -67,13 +61,12 @@ public class UnidadMedidaController {
 		}
     }
     
-    @DeleteMapping
-    public ResponseEntity<Object> eliminarUnidadMedida(@RequestBody String idUnidadMedida) {
-    	Gson gson = new Gson();
-    	JSONObject objUnidadMedida = gson.fromJson(idUnidadMedida, JSONObject.class);
+    @DeleteMapping("/{idUnidadMedida}")
+    public ResponseEntity<Object> eliminarUnidadMedida(@PathVariable("idUnidadMedida") int idUnidadMedida) {
+
         try {
         	System.out.println();
-        	String respuesta = unidadMedidaService.eliminarUnidadMedida(Integer.parseInt(objUnidadMedida.get("idUnidadMedida").toString()));
+        	String respuesta = unidadMedidaService.eliminarUnidadMedida(idUnidadMedida);
         	return ResponseEntity.status(HttpStatus.OK).body(respuesta);
 		} catch (MsjException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

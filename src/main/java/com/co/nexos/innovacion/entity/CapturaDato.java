@@ -1,16 +1,11 @@
 package com.co.nexos.innovacion.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -50,13 +45,9 @@ public class CapturaDato implements Serializable {
     private Float latitud;
     @Column(name = "estado")
     private Short estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCapturaDato")
-    private Collection<Sensor> sensorCollection;
-    @JoinColumn(name = "id_sitio_captura", referencedColumnName = "id_sitio_captura_dato")
-    @ManyToOne(optional = false)
-    private SitioCapturaDato idSitioCaptura;
-    @JoinColumn(name = "id_variable", referencedColumnName = "id_variable")
-    @ManyToOne(optional = false)
-    private Variable idVariable;
+    @Column(name = "id_sitio_captura")
+    private Integer idSitioCaptura;
+    @Column(name = "id_variable")
+    private Integer idVariable;
 
 }

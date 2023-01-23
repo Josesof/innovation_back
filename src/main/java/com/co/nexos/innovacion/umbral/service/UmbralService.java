@@ -43,6 +43,8 @@ public class UmbralService implements IUmbralService {
 	public List<Umbral> consultarUmbrals() throws MsjException {
 
 		List<Umbral> umbrals = (List<Umbral>) umbralRepository.findAll();
+		
+		System.out.println("lstUmbral: " + umbrals);
 		if (!umbrals.isEmpty()) {
 			return umbrals;
 		} else {

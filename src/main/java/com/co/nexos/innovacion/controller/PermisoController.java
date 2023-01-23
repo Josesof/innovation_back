@@ -1,6 +1,5 @@
 package com.co.nexos.innovacion.controller;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.co.nexos.innovacion.entity.Permiso;
 import com.co.nexos.innovacion.exception.MsjException;
 import com.co.nexos.innovacion.permiso.service.IPermisoService;
-import com.google.gson.Gson;
 
 /**
  *
@@ -62,14 +60,11 @@ public class PermisoController {
 		}
     }
     
-    @DeleteMapping
-    public ResponseEntity<Object> eliminarPermiso(@RequestBody String idPermiso) {
-    	Gson gson = new Gson();
-    	JSONObject objPermiso = gson.fromJson(idPermiso, JSONObject.class);
-    	;
+    @DeleteMapping("/{idPermiso}")
+    public ResponseEntity<Object> eliminarPermiso(@PathVariable("idPermiso") int idPermiso) {
         try {
         	System.out.println();
-        	String respuesta = permisoService.eliminarPermiso(Integer.parseInt(objPermiso.get("idPermiso").toString()));
+        	String respuesta = permisoService.eliminarPermiso(idPermiso);
         	return ResponseEntity.status(HttpStatus.OK).body(respuesta);
 		} catch (MsjException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

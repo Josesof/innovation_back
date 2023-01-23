@@ -1,5 +1,6 @@
 package com.co.nexos.innovacion.variable.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import com.co.nexos.innovacion.entity.Variable;
@@ -13,6 +14,6 @@ public interface IVariableService {
 	
 	public List<Variable> consultarVariables() throws MsjException;
 
-	public String eliminarVariable(int idVariable) throws MsjException;	
+	public String eliminarVariable(int idVariable) throws MsjException, SQLIntegrityConstraintViolationException;	
 
 }

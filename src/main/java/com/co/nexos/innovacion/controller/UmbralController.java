@@ -4,7 +4,6 @@
  */
 package com.co.nexos.innovacion.controller;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.co.nexos.innovacion.exception.MsjException;
 import com.co.nexos.innovacion.umbral.service.IUmbralService;
-import com.google.gson.Gson;
 
 /**
  *
@@ -32,8 +30,8 @@ import com.google.gson.Gson;
 public class UmbralController  {
 
 	@Autowired
-	private IUmbralService umbralService; 
-
+	private IUmbralService umbralService;
+	
     @PostMapping
     public ResponseEntity<Object> crearUmbral(@RequestBody String umbral) {
         try {
@@ -65,14 +63,11 @@ public class UmbralController  {
 		}
     }
     
-    @DeleteMapping
-    public ResponseEntity<Object> eliminarUmbral(@RequestBody String idUmbral) {
-    	Gson gson = new Gson();
-    	JSONObject objUmbral = gson.fromJson(idUmbral, JSONObject.class);
-    	;
+    @DeleteMapping("/{idUmbral}")
+    public ResponseEntity<Object> eliminarUmbral(@PathVariable("idUmbral") int idUmbral) {
         try {
         	System.out.println();
-        	String respuesta = umbralService.eliminarUmbral(Integer.parseInt(objUmbral.get("idUmbral").toString()));
+        	String respuesta = umbralService.eliminarUmbral(idUmbral);
         	return ResponseEntity.status(HttpStatus.OK).body(respuesta);
 		} catch (MsjException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

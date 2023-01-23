@@ -7,7 +7,7 @@ import com.co.nexos.innovacion.exception.MsjException;
 
 public interface IUsuarioService {
 	
-	public Usuario crearUsuario(String usuario) throws MsjException;
+	public Usuario crearUsuario(Usuario usuario) throws MsjException;
 	
 	public Usuario consultarUsuarioId(int idUsuario) throws MsjException;	
 	

@@ -4,7 +4,6 @@
  */
 package com.co.nexos.innovacion.controller;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.co.nexos.innovacion.entity.SitioCapturaDato;
 import com.co.nexos.innovacion.exception.MsjException;
 import com.co.nexos.innovacion.sitiocapturadato.service.ISitioCapturaDatoService;
-import com.google.gson.Gson;
 
 /**
  *
@@ -67,14 +65,11 @@ public class SitioCapturaDatoController {
 		}
     }
     
-    @DeleteMapping
-    public ResponseEntity<Object> eliminarSitioCapturaDato(@RequestBody String idSitioCapturaDato) {
-    	Gson gson = new Gson();
-    	JSONObject objSitioCapturaDato = gson.fromJson(idSitioCapturaDato, JSONObject.class);
-    	;
+    @DeleteMapping("/{idSitioCapturaDato}")
+    public ResponseEntity<Object> eliminarSitioCapturaDato(@PathVariable("idSitioCapturaDato") int idSitioCapturaDato) {
         try {
         	System.out.println();
-        	String respuesta = sitioCapturaDatoService.eliminarSitioCapturaDato(Integer.parseInt(objSitioCapturaDato.get("idSitioCapturaDato").toString()));
+        	String respuesta = sitioCapturaDatoService.eliminarSitioCapturaDato(idSitioCapturaDato);
         	return ResponseEntity.status(HttpStatus.OK).body(respuesta);
 		} catch (MsjException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

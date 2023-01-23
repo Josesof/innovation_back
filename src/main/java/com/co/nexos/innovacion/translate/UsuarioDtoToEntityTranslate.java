@@ -21,9 +21,9 @@ public class UsuarioDtoToEntityTranslate implements Translator<UsuarioDTO, Usuar
 			.password(input.getPassword())
 			.estado(input.getEstado())
 			.contacto(input.getContacto())
-			.idCliente(input.getIdCliente())
+			/*.idCliente(input.getIdCliente())
 			.idPermiso(input.getIdPermiso())
-			.idRol(input.getIdRol())
+			.idRol(input.getIdRol())*/
 			.build();
   }
 }

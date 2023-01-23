@@ -1,6 +1,7 @@
 package com.co.nexos.innovacion.controller;
 
-import org.json.simple.JSONObject;
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.co.nexos.innovacion.entity.Variable;
 import com.co.nexos.innovacion.exception.MsjException;
 import com.co.nexos.innovacion.variable.service.IVariableService;
-import com.google.gson.Gson;
 
 /**
  *
@@ -63,13 +62,11 @@ public class VariableController{
 		}
     }
     
-    @DeleteMapping
-    public ResponseEntity<Object> eliminarVariable(@RequestBody String idVariable) {
-    	Gson gson = new Gson();
-    	JSONObject objVariable = gson.fromJson(idVariable, JSONObject.class);
+    @DeleteMapping("/{idVariable}")
+    public ResponseEntity<Object> eliminarVariable(@PathVariable("idVariable") int idVariable) throws SQLIntegrityConstraintViolationException {
         try {
         	System.out.println();
-        	String respuesta = variableService.eliminarVariable(Integer.parseInt(objVariable.get("idVariable").toString()));
+        	String respuesta = variableService.eliminarVariable(idVariable);
         	return ResponseEntity.status(HttpStatus.OK).body(respuesta);
 		} catch (MsjException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

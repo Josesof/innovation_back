@@ -1,6 +1,5 @@
 package com.co.nexos.innovacion.controller;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.co.nexos.innovacion.cliente.service.IClienteService;
 import com.co.nexos.innovacion.entity.Cliente;
 import com.co.nexos.innovacion.exception.MsjException;
-import com.google.gson.Gson;
 
 /**
  *
@@ -63,14 +61,11 @@ public class ClienteController {
 		}
     }
     
-    @DeleteMapping
-    public ResponseEntity<Object> eliminarCliente(@RequestBody String idCliente) {
-    	Gson gson = new Gson();
-    	JSONObject objCliente = gson.fromJson(idCliente, JSONObject.class);
-    	;
+    @DeleteMapping("/{idCliente}")
+    public ResponseEntity<Object> eliminarCliente(@PathVariable("idCliente") int idCliente) {
         try {
         	System.out.println();
-        	String respuesta = clienteService.eliminarCliente(Integer.parseInt(objCliente.get("idCliente").toString()));
+        	String respuesta = clienteService.eliminarCliente(idCliente);
         	return ResponseEntity.status(HttpStatus.OK).body(respuesta);
 		} catch (MsjException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

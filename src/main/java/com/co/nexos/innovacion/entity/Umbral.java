@@ -6,8 +6,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -45,8 +43,11 @@ public class Umbral implements Serializable {
     private Float min;
     @Column(name = "color")
     private String color;
-    @JoinColumn(name = "id_variable", referencedColumnName = "id_variable")
-    @ManyToOne(optional = false)
-    private Variable idVariable;
+    @Column(name = "id_variable")
+    private Integer idVariable;
+    /*@JsonBackReference
+    @JoinColumn(name = "id_variable", referencedColumnName = "id_variable" )
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Variable idVariable;*/
     
 }

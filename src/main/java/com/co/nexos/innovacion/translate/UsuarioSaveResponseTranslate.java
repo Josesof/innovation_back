@@ -27,9 +27,9 @@ public class UsuarioSaveResponseTranslate implements Translator<Usuario, Usuario
 				.password(input.getPassword())
 				.estado(input.getEstado())
 				.contacto(input.getContacto())
-				.idCliente(input.getIdCliente())
+				/*.idCliente(input.getIdCliente())
 				.idPermiso(input.getIdPermiso())
-				.idRol(input.getIdRol())
+				.idRol(input.getIdRol())/**/
 				.build();
 	}
 }

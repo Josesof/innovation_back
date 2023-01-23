@@ -6,8 +6,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -45,11 +43,9 @@ public class Sensor implements Serializable {
     private String color;
     @Column(name = "estado")
     private Short estado;
-    @JoinColumn(name = "id_captura_dato", referencedColumnName = "id_captura_dato")
-    @ManyToOne(optional = false)
-    private CapturaDato idCapturaDato;
-    @JoinColumn(name = "id_variable", referencedColumnName = "id_variable")
-    @ManyToOne(optional = false)
-    private Variable idVariable;
+    @Column(name = "id_captura_dato")
+    private Integer idCapturaDato;
+    @Column(name = "id_variable")
+    private Integer idVariable;
     
 }

@@ -1,14 +1,11 @@
 package com.co.nexos.innovacion.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -42,7 +39,5 @@ public class SitioCapturaDato implements Serializable {
     private Integer idSitioCapturaDato;
     @Column(name = "nombre_sitio")
     private String nombreSitio;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSitioCaptura")
-    private Collection<CapturaDato> capturaDatoCollection;
     
 }

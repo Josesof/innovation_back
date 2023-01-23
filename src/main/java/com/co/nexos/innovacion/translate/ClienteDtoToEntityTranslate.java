@@ -1,8 +1,5 @@
 package com.co.nexos.innovacion.translate;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -30,11 +27,11 @@ public class ClienteDtoToEntityTranslate implements Translator<ClienteDTO, Clien
 	@Override
 	public Cliente translate(ClienteDTO input) throws MsjException {
 		
-		   List<Variable> VariableDTOs = new ArrayList<>();
+		  /* List<Variable> VariableDTOs = new ArrayList<>();
 		    input.getVariableList().stream()
 		        .forEach(
 		            obj -> {
-		            });
+		            });*/
 		    
 		return Cliente.builder()
 				.idCliente(input.getIdCliente())
@@ -42,8 +39,8 @@ public class ClienteDtoToEntityTranslate implements Translator<ClienteDTO, Clien
 				.correo(input.getCorreo())
 				.contacto(input.getContacto())
 				.permiso(input.getPermiso())
-				.variableList(VariableDTOs)
-				.usuarioList(null)
+				//.variableList(VariableDTOs)
+				//.usuarioList(null)
 				.build();
 	}
 
