@@ -24,6 +24,5 @@ public class RolDTO implements Serializable {
 
     private Integer idRol;
     private String nombreRol;
-    private List<UsuarioDTO> usuarioList;
     
 }

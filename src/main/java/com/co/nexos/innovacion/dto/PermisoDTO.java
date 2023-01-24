@@ -24,6 +24,5 @@ public class PermisoDTO implements Serializable {
 
     private Integer idPermiso;
     private String nombrePermiso;
-    private List<UsuarioDTO> usuarioList;
     
 }

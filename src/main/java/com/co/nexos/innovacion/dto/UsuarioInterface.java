@@ -6,7 +6,7 @@ package com.co.nexos.innovacion.dto;
  */
 public interface UsuarioInterface {
     
-	Integer getIdUsuario();
+	String getIdUsuario();
 	String getNombreUsuario();
 	String getApellidoUsuario();
 	String getCorreoUsuario();

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.co.nexos.innovacion.cliente.repository.IClienteRepository;
+import com.co.nexos.innovacion.dto.ClienteInterface;
 import com.co.nexos.innovacion.entity.Cliente;
 import com.co.nexos.innovacion.exception.MsjException;
 
@@ -20,7 +21,7 @@ public class ClienteService implements IClienteService {
 		return clienteRepository.save(cliente);
 	}
 
-	public Cliente consultarClienteId(int idCliente) throws MsjException {
+	/*public Cliente consultarClienteId(int idCliente) throws MsjException {
 
 		Optional<Cliente> cliente = clienteRepository.findById(idCliente);
 		if (Optional.empty() == null || cliente.isPresent()) {
@@ -28,6 +29,18 @@ public class ClienteService implements IClienteService {
 			return cliente.get();
 		} else {
 			throw new MsjException("No se pudo encontrar cliente con id: " + idCliente);
+		}
+	}*/
+
+	public List<ClienteInterface> consultarClienteId(int idCliente) throws MsjException {
+
+		List<ClienteInterface> cliente = clienteRepository.getClienteById(idCliente);
+
+		if (!cliente.isEmpty()) {
+
+			return cliente;
+		} else {
+			throw new MsjException("No se pudo encontrar usuario con id: " + idCliente);
 		}
 	}
 

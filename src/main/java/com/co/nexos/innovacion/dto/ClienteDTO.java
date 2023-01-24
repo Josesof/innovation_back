@@ -1,7 +1,6 @@
 package com.co.nexos.innovacion.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +25,12 @@ public class ClienteDTO implements Serializable {
     private String nombre;
     private String correo;
     private String contacto;
-    private String permiso;
-    private List<VariableDTO> variableList;
-    private List<UsuarioDTO> usuarioList;
+    private String Permiso;
+    private Integer idVariable;
+    private String nombreVariable;
+    private String estado;
+    private Integer tiempoMuestreo;
+    private Integer idUnidadMedida;
+    private String nombreMedida;
        
 }

@@ -3,11 +3,9 @@ package com.co.nexos.innovacion.usuario.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.co.nexos.innovacion.dto.UsuarioDTO;
 import com.co.nexos.innovacion.dto.UsuarioInterface;
 import com.co.nexos.innovacion.entity.Usuario;
 import com.co.nexos.innovacion.exception.MsjException;
@@ -42,27 +40,17 @@ public class UsuarioService implements IUsuarioService {
 	
 
 
-	public UsuarioInterface consultarUsuarioId(int idUsuario) throws MsjException {
-		
-		ModelMapper mappper = new ModelMapper();
-		UsuarioDTO usuarioDTO = new UsuarioDTO();
+	public List<UsuarioInterface> consultarUsuarioId(int idUsuario) throws MsjException {
 
-		try {
-			UsuarioInterface usuario1 = usuarioRepository.getUsuarioById(idUsuario);	
-			usuarioDTO = mappper.map(usuario1, UsuarioDTO.class);
-			
-			if (!usuarioDTO.equals(null)) {
+		List<UsuarioInterface> usuario1 = usuarioRepository.getUsuarioById(idUsuario);
 
-				return usuario1;
-			} else {
-				throw new MsjException("No se pudo encontrar usuario con id: " + idUsuario);
-			}
-			
-		} catch (Exception e) {
-			e.getMessage();
+		if (!usuario1.equals(null)) {
+
+			return usuario1;
+		} else {
+			throw new MsjException("No se pudo encontrar usuario con id: " + idUsuario);
 		}
-		return null;
-		
+
 	}
 
 	public List<Usuario> consultarUsuarios() throws MsjException {
