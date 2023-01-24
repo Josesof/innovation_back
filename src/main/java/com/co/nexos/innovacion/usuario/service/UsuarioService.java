@@ -3,9 +3,12 @@ package com.co.nexos.innovacion.usuario.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.co.nexos.innovacion.dto.UsuarioDTO;
+import com.co.nexos.innovacion.dto.UsuarioInterface;
 import com.co.nexos.innovacion.entity.Usuario;
 import com.co.nexos.innovacion.exception.MsjException;
 import com.co.nexos.innovacion.usuario.repository.IUsuarioRepository;
@@ -26,7 +29,7 @@ public class UsuarioService implements IUsuarioService {
 
 	}
 
-	public Usuario consultarUsuarioId(int idUsuario) throws MsjException {
+	/*public Usuario consultarUsuarioId(int idUsuario) throws MsjException {
 
 		Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
 		if (Optional.empty() == null || usuario.isPresent()) {
@@ -35,6 +38,31 @@ public class UsuarioService implements IUsuarioService {
 		} else {
 			throw new MsjException("No se pudo encontrar usuario con id: " + idUsuario);
 		}
+	}*/
+	
+
+
+	public UsuarioInterface consultarUsuarioId(int idUsuario) throws MsjException {
+		
+		ModelMapper mappper = new ModelMapper();
+		UsuarioDTO usuarioDTO = new UsuarioDTO();
+
+		try {
+			UsuarioInterface usuario1 = usuarioRepository.getUsuarioById(idUsuario);	
+			usuarioDTO = mappper.map(usuario1, UsuarioDTO.class);
+			
+			if (!usuarioDTO.equals(null)) {
+
+				return usuario1;
+			} else {
+				throw new MsjException("No se pudo encontrar usuario con id: " + idUsuario);
+			}
+			
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return null;
+		
 	}
 
 	public List<Usuario> consultarUsuarios() throws MsjException {

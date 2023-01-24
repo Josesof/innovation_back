@@ -14,14 +14,14 @@ public class UsuarioDtoToEntityTranslate implements Translator<UsuarioDTO, Usuar
   public Usuario translate(UsuarioDTO input) throws MsjException {
 	  
     return Usuario.builder()
-    		.idUsuario(input.getIdUsuario())
+    		/*.idUsuario(input.getIdUsuario())
 			.nombres(input.getNombres())
 			.apellidos(input.getApellidos())
 			.correo(input.getCorreo())
 			.password(input.getPassword())
 			.estado(input.getEstado())
 			.contacto(input.getContacto())
-			/*.idCliente(input.getIdCliente())
+			.idCliente(input.getIdCliente())
 			.idPermiso(input.getIdPermiso())
 			.idRol(input.getIdRol())*/
 			.build();
